@@ -3,7 +3,7 @@ import {usersService} from "../../../services/users.service.ts";
 import {useAppSelector} from "../../../store/store.ts";
 import UserInlineComponent from "./UserInlineComponent.tsx";
 import {IUser} from "../../../models/IUser.ts";
-import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
+import {DragDropContext, Draggable, Droppable} from "@hello-pangea/dnd";
 import {localStorageUtils} from "../../../services/utils/localStorageUtils.ts";
 
 const UsersComponent: FC = () => {
