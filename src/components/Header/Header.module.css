@@ -1,0 +1,17 @@
+.nav {
+    @apply w-screen;
+    width: 100vw;
+}
+
+.nav-list {
+    @apply flex;
+}
+
+.nav-list > li{
+    @apply text-2xl font-black ml-2.5;
+}
+
+.nav-list > li:nth-child(1) {
+    @apply m-0;
+}
+
