@@ -24,17 +24,17 @@ const usersService = {
         }
     },
 
-    addToFavorite: (userId: number):void => {
+    addToFavorite: (userId: number): void => {
         let favoriteUsersSet = new Set(localStorageUtils.getArray<number>("favoriteUsers"));
         favoriteUsersSet.add(userId);
         localStorageUtils.setArray("favoriteUsers", Array.from(favoriteUsersSet));
     },
 
-    getFavoriteUsersFromStorage: ():number[] => {
+    getFavoriteUsersFromStorage: (): number[] => {
         return localStorageUtils.getArray<number>("favoriteUsers");
     },
 
-    getFavoriteUsersEntities:async ():Promise<IUser[]> => {
+    getFavoriteUsersEntities: async (): Promise<IUser[]> => {
         const favoriteUsersFromStorage = localStorageUtils.getArray<number>("favoriteUsers");
         return await Promise.all(
             favoriteUsersFromStorage.map(async (userId: number) => {
@@ -43,16 +43,21 @@ const usersService = {
         );
     },
 
-    getUser: async (id: number) => {
+    getUser: async (id: number): Promise<IUser> => {
         try {
             const response = await axiosInstance.get(`/${id}`);
             return response.data;
         } catch (e) {
             console.error(e);
+            return {
+                id: 0,
+                firstName: "",
+                lastName: "",
+            };
         }
     },
 
-    removeFavorite: (userId: number):void => {
+    removeFavorite: (userId: number): void => {
         let favoriteUsers = localStorageUtils.getArray<number>("favoriteUsers");
         favoriteUsers.splice(favoriteUsers.indexOf(userId), 1);
         localStorageUtils.setArray("favoriteUsers", favoriteUsers);
